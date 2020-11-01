@@ -1,0 +1,30 @@
+<%- include("header.ejs") %>
+<main class="my-3">
+<div class="container">
+    <% if (saveInFile) {%>
+        <p class="text-white text-center">Saved</p>
+    <% } %>
+
+    <div class="row justify-content-center">
+        <div class="contactsWrap py-3 px-4 bg-white rounded col-12 col-md-6 col-xl-4">
+            <% for (var i = 0; i < contactItems.length; i++) {%>
+                <form action="/delete" method="POST" class="mb-3">
+                    <div class="containtItemsWrap d-flex justify-content-between align-items-center">
+                        <ul class="m-0 list-unstyled">
+                            <li class="contactItemTitle"><%= contactItems[i].cName %> <%= contactItems[i].cSurname %></li>
+                            <li class="contactItemPhone"><%= contactItems[i].cPhone %></li>
+                        </ul>
+                        <div class="btnRemoveItemWrap">
+                            <button class="btn btn-danger" type="submit" name="removeContactBtn" value="<%= contactItems[i].cName %>,<%= contactItems[i].cSurname %>,<%= contactItems[i].cPhone %>"><span class="icon-trash-o"></span></button>
+                        </div>
+                        <!-- /.btnRemoveItemWrap -->
+                    </div>
+                    <!-- /.containtItemsWrap -->
+                </form>
+            <% } %>
+        </div>
+    </div>
+    <!-- /.contactsWrap -->
+</div>
+</main>
+<%- include("footer.ejs") %>

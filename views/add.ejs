@@ -1,0 +1,28 @@
+<%- include("header.ejs") %>
+<main class="my-3 my-md-auto">
+<div class="container">
+    <!--add task-->
+    <form action="/addInFile" id="saveContactForm" class="class" method="POST">
+        <div class="row justify-content-center">
+            <div class="addContactWrap py-3 px-4 rounded col-12 col-md-6 col-xl-4">
+                <div class="form-group">
+                    <label for="inputName">Contact name</label>
+                    <input type="text" name="contactName" class="form-control" id="inputName" placeholder="Enter name" autocomplete="off" required="required" minlength="1" maxlength="50" autofocus>
+                </div>
+                <div class="form-group">
+                    <label for="inputSurname">Contact surname</label>
+                    <input type="text" name="contactSurname" class="form-control" id="inputSurname" placeholder="Enter surname" autocomplete="off" required="required" minlength="1" maxlength="50">
+                </div>
+                <div class="form-group">
+                    <label for="inputPhone">Contact phone</label>
+                    <input type="text" name="contactPhone" class="form-control" id="inputPhone" placeholder="1234567890" autocomplete="off" required="required" minlength="1" maxlength="20">
+                </div>
+                <button class="btn btn-success" id="saveContact" type="submit">Save</button>
+                <p id="message" class="text-nowrap text-center text-danger mb-0 mt-3">The fields are filled in incorrectly</p>
+            </div>
+        </div>
+        <!-- /.row -->
+    </form>
+</div>
+</main>
+<%- include("footer.ejs") %>
