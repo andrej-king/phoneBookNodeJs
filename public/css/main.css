@@ -50,11 +50,11 @@ footer {
 /* icomoon start */
 @font-face {
     font-family: 'icomoon';
-    src:  url('https://i.icomoon.io/public/temp/cf7dc25108/UntitledProject/icomoon.eot?ji93pd');
-    src:  url('https://i.icomoon.io/public/temp/cf7dc25108/UntitledProject/icomoon.eot?ji93pd#iefix') format('embedded-opentype'),
-    url('https://i.icomoon.io/public/temp/cf7dc25108/UntitledProject/icomoon.ttf?ji93pd') format('truetype'),
-    url('https://i.icomoon.io/public/temp/cf7dc25108/UntitledProject/icomoon.woff?ji93pd') format('woff'),
-    url('https://i.icomoon.io/public/temp/cf7dc25108/UntitledProject/icomoon.svg?ji93pd#icomoon') format('svg');
+    src:  url('fonts/icomoon.eot?40ksyx');
+    src:  url('fonts/icomoon.eot?40ksyx#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?40ksyx') format('truetype'),
+    url('fonts/icomoon.woff?40ksyx') format('woff'),
+    url('fonts/icomoon.svg?40ksyx#icomoon') format('svg');
     font-weight: normal;
     font-style: normal;
     font-display: block;
@@ -77,11 +77,5 @@ footer {
 
 .icon-trash-o:before {
     content: "\e900";
-}
-.icon-trash:before {
-    content: "\e902";
-}
-.icon-close:before {
-    content: "\e901";
 }
 /* icomoon end */
