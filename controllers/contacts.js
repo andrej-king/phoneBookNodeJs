@@ -1,14 +1,18 @@
-const date = require('../generateDate.js');
-const Contacts = require('../models/contactFunctions');
-let saveResult = false;
+const date      = require('../generateDate.js');
+const mongoose  = require('mongoose');
+const Contact   = mongoose.model('Contact');
+let saveResult = false; // if success save contact - show it on home page
 
 exports.getMainPage = (req, res) => {
-	Contacts.fetchContacts(items => {
-		let day = date.getDate();
+	let day = date.getDate();
 
-		res.render('index.ejs', {title: "Phone book", header:  day, saveInFile: saveResult, contactItems: items});
+	Contact.find((error, contacts) => {
+		if (!error) {
+			res.render('index.ejs', {title: "Phone book", header:  day, saveInFile: saveResult, contactItems: contacts});
+		} else {
+			console.log("Failed to retireve data: ", error);
+		}
 	});
-
 };
 
 exports.addNewItem = (req, res) => {
@@ -22,16 +26,31 @@ exports.addItemInFile = (req, res) => {
 	let contactPhone =  req.body.contactPhone.trim();
 
 	if (contactName !== "" && contactSurname !== "" && contactPhone !== "") {
-		const item = new Contacts(contactName, contactSurname, contactPhone);
-		item.saveContact();
-	}
+		let newContact = new Contact();
+		newContact.cName = contactName;
+		newContact.cSurname = contactSurname;
+		newContact.cPhone = contactPhone;
 
-	saveResult = true;
-	res.redirect('/');
+		newContact.save((error, response) => {
+			if (!error) {
+				saveResult = true;
+				res.redirect('/');
+			} else {
+				console.log("Save contact error msg: ", error);
+			}
+		});
+	}
 }
 
 exports.deleteItem = (req, res) => {
-	Contacts.deleteContact(req.body.removeContactBtn);
+	const checkItemId = req.body.removeContactBtn;
 
-	res.redirect('/');
+	Contact.findByIdAndRemove(checkItemId, function (error) {
+		if (!error) {
+			console.log("Successfully delete item: ", checkItemId);
+			res.redirect('/');
+		} else {
+			console.log("Delete error msg: ", error);
+		}
+	});
 }
